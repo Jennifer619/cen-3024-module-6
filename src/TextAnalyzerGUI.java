@@ -92,7 +92,7 @@ public class TextAnalyzerGUI {
 						} // end of compare
 					}); // end of sort
 					// printing the list
-					JOptionPane.showMessageDialog(null, sortedList);
+						JOptionPane.showMessageDialog(null, sortedList);
 			} // end of action event
 		}); // end of action listener
 		frame.getContentPane().add(btnNewButton_1);
