@@ -22,16 +22,16 @@ public class TextAnalyzerGUI {
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
-			}
-		});
-	}
+				} // end of try catch
+			} // end of run
+		}); // end of event queue
+	} // end of main
 	/**
 	 * Create the application.
 	 */
 	public TextAnalyzerGUI() {
 		initialize();
-	}
+	} // end of gui
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -41,40 +41,57 @@ public class TextAnalyzerGUI {
 		frame.setBounds(100, 100, 810, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		// header
-		JLabel lblNewLabel = new JLabel("Please select an action choice: ");
-		lblNewLabel.setBounds(0, 0, 786, 24);
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		frame.getContentPane().add(lblNewLabel);
-		// view poem
-		JButton btnNewButton = new JButton("View Poem");
-		btnNewButton.setBounds(0, 150, 265, 170);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		frame.getContentPane().add(btnNewButton);
 		// poem word frequency
 		JButton btnNewButton_1 = new JButton("Word Frequency Count (Entire Poem)");
 		btnNewButton_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		btnNewButton_1.setBounds(265, 150, 265, 170);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
+				public main(String[] args) throws FileNotFoundException {
+					/** Reading file line by line */
+					File file = new File("src\\TheRaven.txt");
+					Scanner scan = new Scanner(file);
+					/**
+					 * map to store key value pair
+					 * key : word
+					 * value: frequency of the word
+					 */
+					Map<String,Integer> map = new HashMap<String, Integer>(); 
+					while (scan.hasNext()) {
+						// reading line by line
+						String val = scan.next(); 
+						// if the string is not inserted in the map yet then insert by setting the frequency as 1
+						if (map.containsKey(val) == false) 
+							map.put(val,1);
+						// otherwise remove the entry from map and again insert by adding 1 in the frequency
+						else { 
+							// finding the current frequency of the word
+							int count = (int)(map.get(val)); 
+							// removing the entry from the map
+							map.remove(val);  
+							// reinserting the word and increase frequency by 1
+							map.put(val,count+1); 
+						} // end of else
+					} // end of while
+					// retrieving the map contents
+					Set<Map.Entry<String, Integer>> set = map.entrySet(); 
+					// make an array list
+					List<Map.Entry<String, Integer>> sortedList = new ArrayList<Map.Entry<String, Integer>>(set);  
+					// sorting the array list
+					Collections.sort(sortedList, new Comparator<Map.Entry<String, Integer>>() { 
+						// comparator function for sorting
+						public int compare(Map.Entry<String, Integer> a, Map.Entry<String, Integer> b) { 
+							// for descending order
+							return (b.getValue()).compareTo(a.getValue());   
+						} // end of compare
+					}); // end of sort
+					// printing the list
+					for(Map.Entry<String, Integer> i:sortedList) {
+						System.out.println(i.getKey()+" -> "+i.getValue());
+					} // end of for
+				} // end of main
+			} // end of action event
+		}); // end of action listener
 		frame.getContentPane().add(btnNewButton_1);
-		// one word frequency
-		JButton btnNewButton_2 = new JButton("Word Frequency Count (One Word)");
-		btnNewButton_2.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		btnNewButton_2.setBounds(530, 150, 265, 170);
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		frame.getContentPane().add(btnNewButton_2);
-	}
-}
+	} // end of initialize
+} // end of class
