@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
+import javax.swing.JScrollPane;
 
 public class TextAnalyzerGUI {
 	private JFrame frame;
@@ -92,7 +93,7 @@ public class TextAnalyzerGUI {
 						} // end of compare
 					}); // end of sort
 					// printing the list
-						JOptionPane.showMessageDialog(null, sortedList);
+					JOptionPane.showMessageDialog(null, sortedList);
 			} // end of action event
 		}); // end of action listener
 		frame.getContentPane().add(btnNewButton_1);
@@ -101,5 +102,7 @@ public class TextAnalyzerGUI {
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel.setBounds(265, 90, 265, 24);
 		frame.getContentPane().add(lblNewLabel);
+		
+
 	} // end of initialize
 } // end of class
