@@ -2,7 +2,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -44,7 +43,7 @@ public class TextAnalyzerGUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		// poem word frequency
-		JButton btnNewButton_1 = new JButton("Word Frequency Count (Entire Poem)");
+		JButton btnNewButton_1 = new JButton("Top 20 Most Used Words in The Raven");
 		btnNewButton_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		btnNewButton_1.setBounds(265, 150, 265, 170);
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -93,9 +92,7 @@ public class TextAnalyzerGUI {
 						} // end of compare
 					}); // end of sort
 					// printing the list
-					for(Map.Entry<String, Integer> i:sortedList) {
-						JOptionPane.showMessageDialog(null, i.getKey()+" -> "+i.getValue());
-					} // end of for
+					JOptionPane.showMessageDialog(null, sortedList);
 			} // end of action event
 		}); // end of action listener
 		frame.getContentPane().add(btnNewButton_1);
