@@ -47,10 +47,15 @@ public class TextAnalyzerGUI {
 		btnNewButton_1.setBounds(265, 150, 265, 170);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				public main(String[] args) throws FileNotFoundException {
 					/** Reading file line by line */
 					File file = new File("src\\TheRaven.txt");
-					Scanner scan = new Scanner(file);
+					Scanner scan = null;
+					try {
+						scan = new Scanner(file);
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					/**
 					 * map to store key value pair
 					 * key : word
@@ -89,9 +94,13 @@ public class TextAnalyzerGUI {
 					for(Map.Entry<String, Integer> i:sortedList) {
 						System.out.println(i.getKey()+" -> "+i.getValue());
 					} // end of for
-				} // end of main
 			} // end of action event
 		}); // end of action listener
 		frame.getContentPane().add(btnNewButton_1);
+		// header
+		JLabel lblNewLabel = new JLabel("            Click to continue");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblNewLabel.setBounds(265, 90, 265, 24);
+		frame.getContentPane().add(lblNewLabel);
 	} // end of initialize
 } // end of class
