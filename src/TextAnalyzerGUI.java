@@ -1,6 +1,8 @@
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -92,7 +94,7 @@ public class TextAnalyzerGUI {
 					}); // end of sort
 					// printing the list
 					for(Map.Entry<String, Integer> i:sortedList) {
-						System.out.println(i.getKey()+" -> "+i.getValue());
+						JOptionPane.showMessageDialog(null, i.getKey()+" -> "+i.getValue());
 					} // end of for
 			} // end of action event
 		}); // end of action listener
